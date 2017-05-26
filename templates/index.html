@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Python Forms</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/css/custom.css">
+</head>
+<body>
+<div class="container">
+    <div class="row col-md-6 col-md-offset-3">
+        <ul class="nav nav-pills nav-justified">
+            <li class="active"><a href="/">Home</a></li>
+            <li><a href="/details">Details</a></li>
+        </ul>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-primary" id="topPadding">
+                <div class="panel-heading">Register Here</div>
+                <div class="panel-body">
+                    <form action="/" method="post">
+                        {{ form.hidden_tag() }}
+                        {% for field in form %}
+                            {% if field.errors %}
+                                {% for error in field.errors %}
+                                    <p class="text-danger">
+                                        {{ error }}
+                                    </p>
+                                {% endfor %}
+                            {% endif %}
+                            <div class="form-group">
+                                {{ field(placeholder=field.label.text, class_="form-control") }}
+                            </div>
+                        {% endfor %}
+                        <button type="submit" class="btn btn-primary btn-block btn-group-sm">Register</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
